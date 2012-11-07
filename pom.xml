@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.realtimecep.pilots.analytics.sns</groupId>
+    <artifactId>rt-statss-pilot</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>Real-time Analytics Pilot Project</name>
+    <url>http://www.facebook.com/groups/realtimecep</url>
+    <inceptionYear>2012</inceptionYear>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.log4j>1.2.16</version.log4j>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Java Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>6</source>
+                    <target>6</target>
+                    <compilerVersion>1.6</compilerVersion>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <!-- Storm Dependency -->
+        <dependency>
+            <groupId>storm</groupId>
+            <artifactId>storm</artifactId>
+            <version>0.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.espertech</groupId>
+            <artifactId>esper</artifactId>
+            <version>4.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${version.log4j}</version>
+            <optional>true</optional>
+        </dependency>
+
+
+        <!-- ====================== -->
+        <!--  Dependency for Test   -->
+        <!-- ====================== -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+
+        <repository>
+            <id>clojars.org</id>
+            <url>http://clojars.org/repo</url>
+        </repository>
+
+
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>codehaus</id>
+            <name>Codehaus Plugin Repository</name>
+            <url>http://repository.codehaus.org/org/codehaus/mojo</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <organization>
+        <name>Ted Won</name>
+        <url>http://tedwon.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>tedwon</id>
+            <name>Ted Won</name>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <email>iamtedwon@gmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+
+</project>
