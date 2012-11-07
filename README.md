@@ -6,9 +6,12 @@ Real-time Analytics Pilot Project on SNS Big Data
 http://www.facebook.com/groups/realtimecep/
 http://www.facebook.com/groups/jbossusergroup/
 
-See http://storm-project.net/
+See http://storm-project.net
+
 See http://esper.codehaus.org/tutorials/tutorial/quickstart.html
+
 See http://tedwon.com/display/dev/CEP
+
 See http://tedwon.com/display/dev/Twitter+Storm
 
 
