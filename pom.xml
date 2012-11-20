@@ -63,7 +63,7 @@
             <groupId>storm</groupId>
             <artifactId>storm</artifactId>
             <version>0.8.1</version>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

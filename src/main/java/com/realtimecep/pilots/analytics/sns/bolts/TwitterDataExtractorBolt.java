@@ -39,8 +39,8 @@ public class TwitterDataExtractorBolt extends BaseBasicBolt {
         String[] words = tweet.split(" ");
         for (String word : words) {
             word = word.trim();
-            if (!word.isEmpty()) {
-                word = word.toLowerCase();
+            word = word.toLowerCase();
+            if (!word.isEmpty() && filter(word)) {
                 collector.emit(new Values(word));
             }
         }
@@ -53,5 +53,15 @@ public class TwitterDataExtractorBolt extends BaseBasicBolt {
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
         declarer.declare(new Fields("word"));
+    }
+
+    private boolean filter(String word) {
+
+        if("rt".equals(word) || "...".equals(word) || word.length() == 1) {
+            return false;
+        }
+
+        return true;
+
     }
 }

@@ -27,7 +27,7 @@ io.of("/hashs").on("connection",function(socket){
 var redisClient = redis.createClient(6379,"127.0.0.1")
 redisClient.on("ready",function(){
     setInterval(function(){
-        redisClient.hgetall("word-count-dev-00",function(err,data){
+        redisClient.hgetall("word-count-dev",function(err,data){
             var count = 0
             var total = 0
             for(var i in data)
@@ -38,7 +38,7 @@ redisClient.on("ready",function(){
             })
             
             var toShow = {}
-            for(var i = 0; i < Math.min(keys.length,30); i++)
+            for(var i = 0; i < Math.min(keys.length,40); i++)
                 toShow[keys[i]] = data[keys[i]]
             hashs = toShow;
         })

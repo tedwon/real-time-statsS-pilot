@@ -30,6 +30,7 @@ public class WordCountSaverBolt extends BaseBasicBolt {
 
     private Jedis jedis;
 
+
     /**
      * At the end of the spout (when the cluster is shutdown
      * We will show the word counters
@@ -55,16 +56,20 @@ public class WordCountSaverBolt extends BaseBasicBolt {
 
         this.jedis = new Jedis(redisHost, redisPort);
         this.jedis.connect();
+
     }
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
+
     }
 
 
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
+
         String str = input.getString(0);
+
         /**
          * If the word dosn't exist in the map we will create
          * this, if not We will add 1
@@ -76,11 +81,7 @@ public class WordCountSaverBolt extends BaseBasicBolt {
             counters.put(str, c);
         }
 
-
-//        logger.info("### " + counters);
-
         hincrBy(str, counters.get(str));
-
 
     }
 
@@ -89,15 +90,7 @@ public class WordCountSaverBolt extends BaseBasicBolt {
 
         logger.info("key: " + key + ", val: " + val);
 
-//        if (!"대선".equals(key)
-//                && !"박근혜".equals(key)
-//                && !"snspage".equals(key)
-//                && !"박".equals(key)
-//                && !"대".equals(key)
-//                && !"toptop".equals(key)
-//                && !"박근혜".equals(key)
-//                && !"박근혜".equals(key)) {
-        jedis.hincrBy("word-count-dev-00", key, val);
-//        }
+        jedis.hincrBy("word-count-dev", key, val);
+
     }
 }
