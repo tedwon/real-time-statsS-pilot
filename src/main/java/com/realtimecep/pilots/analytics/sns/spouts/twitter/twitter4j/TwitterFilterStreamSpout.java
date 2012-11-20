@@ -6,6 +6,7 @@ import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseRichSpout;
 import backtype.storm.tuple.Fields;
+import backtype.storm.tuple.Values;
 import backtype.storm.utils.Utils;
 import org.slf4j.LoggerFactory;
 import twitter4j.FilterQuery;
@@ -114,12 +115,12 @@ public class TwitterFilterStreamSpout extends BaseRichSpout {
 
     @Override
     public void nextTuple() {
-        Status ret = queue.poll();
-        if (ret == null) {
+        Status tweet = queue.poll();
+        if (tweet == null) {
             Utils.sleep(50);
         } else {
-            logger.info(ret.getText());
-//            _collector.emit(new Values(ret));
+//            logger.info(tweet.getText());
+            _collector.emit(new Values(tweet.getText()));
         }
     }
 
