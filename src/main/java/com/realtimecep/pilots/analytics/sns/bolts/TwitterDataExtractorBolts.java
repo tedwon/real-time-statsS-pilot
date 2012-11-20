@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ted
- * Date: 11/20/12
- * Time: 3:06 PM
- * To change this template use File | Settings | File Templates.
+ * Twitter Data Extractor Bolts Class.
+ * <p/>
+ *
+ * @author <a href="iamtedwon@gmail.com">Ted Won</a>
+ * @version 0.1.0
  */
 public class TwitterDataExtractorBolts extends BaseBasicBolt {
 
