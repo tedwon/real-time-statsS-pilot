@@ -1,4 +1,4 @@
-package com.realtimecep.pilots.analytics.sns.spouts.twitter;
+package com.realtimecep.pilots.analytics.sns.spouts.twitter.httpclient;
 
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;

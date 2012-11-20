@@ -34,4 +34,4 @@ $ mvn clean package
 Run
 -------------------
 
-$ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realtimecep.pilots.analytics.sns.TopologyStarter -Dexec.args="<twitter id> <twitter pwd>"
+$ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realtimecep.pilots.analytics.sns.LocalTopologyStarter -Dexec.args="<twitter id> <twitter pwd> <track(comma separated filter terms)>"

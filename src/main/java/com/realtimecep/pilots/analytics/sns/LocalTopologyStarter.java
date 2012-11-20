@@ -3,7 +3,8 @@ package com.realtimecep.pilots.analytics.sns;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
-import com.realtimecep.pilots.analytics.sns.spouts.twitter.TwitterApiStreamingSpout;
+import com.realtimecep.pilots.analytics.sns.spouts.twitter.httpclient.TwitterApiStreamingSpout;
+import com.realtimecep.pilots.analytics.sns.spouts.twitter.twitter4j.TwitterFilterStreamSpout;
 
 /**
  * Topology Starter Class.
@@ -12,14 +13,15 @@ import com.realtimecep.pilots.analytics.sns.spouts.twitter.TwitterApiStreamingSp
  * @author <a href="iamtedwon@gmail.com">Ted Won</a>
  * @version 0.1.0
  */
-public class TopologyStarter {
+public class LocalTopologyStarter {
 
     public static void main(String[] args) {
 
         // Step1. Define Topology
         TopologyBuilder builder = new TopologyBuilder();
 
-        builder.setSpout("twitter-stream-reader", new TwitterApiStreamingSpout());
+//        builder.setSpout("twitter-stream-reader", new TwitterApiStreamingSpout());
+        builder.setSpout("twitter-stream-reader", new TwitterFilterStreamSpout());
 
 
         // Step2. Define Configuration
@@ -27,11 +29,10 @@ public class TopologyStarter {
 
         conf.put("user", args[0]);
         conf.put("password", args[1]);
-        conf.put("track", "Barack,Obama");
+        conf.put("track", args[2]);
 
         conf.setDebug(false);
 
-        conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
 
         // Step3. Run Topology
         LocalCluster cluster = new LocalCluster();
