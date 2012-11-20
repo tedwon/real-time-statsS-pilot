@@ -4,7 +4,10 @@ import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseBasicBolt;
+import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
+import backtype.storm.tuple.Values;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
@@ -16,11 +19,11 @@ import java.util.Map;
  * @author <a href="iamtedwon@gmail.com">Ted Won</a>
  * @version 0.1.0
  */
-public class TwitterDataExtractorBolts extends BaseBasicBolt {
+public class TwitterDataExtractorBolt extends BaseBasicBolt {
 
     private static final long serialVersionUID = -3025639777071957758L;
 
-    private org.slf4j.Logger logger = LoggerFactory.getLogger(TwitterDataExtractorBolts.class);
+    private Logger logger = LoggerFactory.getLogger(TwitterDataExtractorBolt.class);
 
 
     @Override
@@ -31,7 +34,16 @@ public class TwitterDataExtractorBolts extends BaseBasicBolt {
     public void execute(Tuple input, BasicOutputCollector collector) {
         String tweet = (String) input.getValueByField("tweet");
 
-        logger.info(tweet);
+//        logger.info(tweet);
+
+        String[] words = tweet.split(" ");
+        for (String word : words) {
+            word = word.trim();
+            if (!word.isEmpty()) {
+                word = word.toLowerCase();
+                collector.emit(new Values(word));
+            }
+        }
     }
 
     @Override
@@ -39,7 +51,7 @@ public class TwitterDataExtractorBolts extends BaseBasicBolt {
     }
 
     @Override
-    public void declareOutputFields(OutputFieldsDeclarer outputFieldsDeclarer) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void declareOutputFields(OutputFieldsDeclarer declarer) {
+        declarer.declare(new Fields("word"));
     }
 }

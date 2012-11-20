@@ -1,10 +1,9 @@
 package com.realtimecep.pilots.analytics.sns;
 
 import backtype.storm.Config;
-import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.topology.TopologyBuilder;
-import com.realtimecep.pilots.analytics.sns.bolts.TwitterDataExtractorBolts;
+import com.realtimecep.pilots.analytics.sns.bolts.TwitterDataExtractorBolt;
 import com.realtimecep.pilots.analytics.sns.spouts.twitter.twitter4j.TwitterFilterStreamSpout;
 
 /**
@@ -27,7 +26,7 @@ public class ClusterTopologyStarter {
 
         builder.setSpout("twitter-stream-reader", new TwitterFilterStreamSpout(), 1);
 
-        builder.setBolt("data-extractor", new TwitterDataExtractorBolts(), 1)
+        builder.setBolt("data-extractor", new TwitterDataExtractorBolt(), 1)
                 .shuffleGrouping("twitter-stream-reader");
 
 

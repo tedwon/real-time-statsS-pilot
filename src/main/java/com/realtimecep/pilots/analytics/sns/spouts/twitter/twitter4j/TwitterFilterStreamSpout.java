@@ -8,6 +8,7 @@ import backtype.storm.topology.base.BaseRichSpout;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
 import backtype.storm.utils.Utils;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import twitter4j.FilterQuery;
 import twitter4j.Status;
@@ -31,7 +32,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class TwitterFilterStreamSpout extends BaseRichSpout {
 
-    private org.slf4j.Logger logger = LoggerFactory.getLogger(TwitterFilterStreamSpout.class);
+    private Logger logger = LoggerFactory.getLogger(TwitterFilterStreamSpout.class);
 
     SpoutOutputCollector _collector;
     LinkedBlockingQueue<Status> queue = null;
@@ -57,6 +58,8 @@ public class TwitterFilterStreamSpout extends BaseRichSpout {
             public void onStatus(Status status) {
 //                System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
                 queue.offer(status);
+
+                Utils.sleep(50);
             }
 
             @Override
