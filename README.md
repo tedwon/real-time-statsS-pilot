@@ -38,4 +38,4 @@ $ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realt
 
 or
 
-$ java -cp rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies -Dlog4j.configuration=log4j.xml com.realtimecep.pilots.analytics.sns.LocalTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)>
+$ java -cp rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar -Dlog4j.configuration=log4j.xml com.realtimecep.pilots.analytics.sns.LocalTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)>
