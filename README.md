@@ -34,8 +34,8 @@ $ mvn clean package
 Run
 -------------------
 
-$ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realtimecep.pilots.analytics.sns.LocalTopologyStarter -Dexec.args="<twitter id> <twitter pwd> <track(comma separated filter terms)>"
+$ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realtimecep.pilots.analytics.sns.LocalTopologyStarter -Dexec.args="<twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379"
 
 or
 
-$ java -cp rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar -Dlog4j.configuration=log4j.xml com.realtimecep.pilots.analytics.sns.LocalTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)>
+$ java -cp rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar -Dlog4j.configuration=log4j.xml com.realtimecep.pilots.analytics.sns.LocalTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379
