@@ -9,6 +9,10 @@ import com.realtimecep.pilots.analytics.sns.spouts.twitter.twitter4j.TwitterFilt
 /**
  * Topology Starter Class.
  * <p/>
+ * java -cp rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies -Dlog4j.configuration=log4j.xml com.realtimecep.pilots.analytics.sns.LocalTopologyStarter
+ * <p/>
+ * storm jar rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies com.realtimecep.pilots.analytics.sns.ClusterTopologyStarter
+ * storm kill statss-analytics-topology
  *
  * @author <a href="iamtedwon@gmail.com">Ted Won</a>
  * @version 0.1.0
@@ -20,7 +24,6 @@ public class LocalTopologyStarter {
         // Step1. Define Topology
         TopologyBuilder builder = new TopologyBuilder();
 
-//        builder.setSpout("twitter-stream-reader", new TwitterApiStreamingSpout());
         builder.setSpout("twitter-stream-reader", new TwitterFilterStreamSpout());
 
 
