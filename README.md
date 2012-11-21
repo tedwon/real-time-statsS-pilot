@@ -44,11 +44,26 @@ $ java -cp rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar -Dlog4j.conf
 Run in cluster mode
 -------------------
 
-### Start
+### Start Topology Command
 
 $ storm jar rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar com.realtimecep.pilots.analytics.sns.ClusterTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379
 
 
-Stop
+### Stop Topology Command
 
 $ storm kill statss-analytics-topology
+
+
+### Activate Topology Command
+
+$ storm activate statss-analytics-topology
+
+
+### Deactivate Topology Command
+
+$ storm deactivate statss-analytics-topology
+
+
+### Rebalance Topology Command
+
+$ storm rebalance statss-analytics-topology
