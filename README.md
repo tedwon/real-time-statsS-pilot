@@ -31,7 +31,7 @@ $ mvn clean package
 
 
 
-Run
+Run in local mode
 -------------------
 
 $ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realtimecep.pilots.analytics.sns.LocalTopologyStarter -Dexec.args="<twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379"
@@ -39,3 +39,16 @@ $ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realt
 or
 
 $ java -cp rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar -Dlog4j.configuration=log4j.xml com.realtimecep.pilots.analytics.sns.LocalTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379
+
+
+Run in cluster mode
+-------------------
+
+Start
+
+$ storm jar rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar com.realtimecep.pilots.analytics.sns.ClusterTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379
+
+
+Stop
+
+$ storm kill statss-analytics-topology
