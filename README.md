@@ -20,7 +20,9 @@ Prerequisites for Building
 
 Java JDK 1.6
 
-Maven 2.2 or higher (http://maven.apache.org/)
+Maven 2.2 or higher (http://maven.apache.org)
+
+Redis, latest stable version (http://redis.io)
 
 
 
