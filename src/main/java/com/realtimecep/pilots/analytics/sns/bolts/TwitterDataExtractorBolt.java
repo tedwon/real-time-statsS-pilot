@@ -55,13 +55,22 @@ public class TwitterDataExtractorBolt extends BaseBasicBolt {
         declarer.declare(new Fields("word"));
     }
 
+    /**
+     * Filter.
+     *
+     * @param word Word
+     * @return whether to filter
+     */
     private boolean filter(String word) {
 
-        if("rt".equals(word) || "...".equals(word) || word.length() == 1) {
+        if ("rt".equals(word)
+                || "...".equals(word)
+                || "박근혜".equals(word)
+                || word.length() == 1) {
+
             return false;
         }
 
         return true;
-
     }
 }
