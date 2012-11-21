@@ -5,8 +5,7 @@ import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.tuple.Fields;
 import com.realtimecep.pilots.analytics.sns.bolts.TwitterDataExtractorBolt;
-import com.realtimecep.pilots.analytics.sns.bolts.WordCountSaverBolt;
-import com.realtimecep.pilots.analytics.sns.bolts.WordCounterBolt;
+import com.realtimecep.pilots.analytics.sns.bolts.WordCountSavorBolt;
 import com.realtimecep.pilots.analytics.sns.spouts.twitter.twitter4j.TwitterFilterStreamSpout;
 
 /**
@@ -32,7 +31,7 @@ public class LocalTopologyStarter {
         builder.setBolt("data-extractor", new TwitterDataExtractorBolt())
                 .shuffleGrouping("twitter-stream-reader");
 
-        builder.setBolt("", new WordCountSaverBolt())
+        builder.setBolt("", new WordCountSavorBolt())
                 .fieldsGrouping("data-extractor", new Fields("word"));
 
 

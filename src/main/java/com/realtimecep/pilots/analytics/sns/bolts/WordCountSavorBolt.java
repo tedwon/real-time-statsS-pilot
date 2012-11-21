@@ -19,9 +19,9 @@ import java.util.Map;
  * @author <a href="iamtedwon@gmail.com">Ted Won</a>
  * @version 0.1.0
  */
-public class WordCountSaverBolt extends BaseBasicBolt {
+public class WordCountSavorBolt extends BaseBasicBolt {
 
-    private Logger logger = LoggerFactory.getLogger(WordCountSaverBolt.class);
+    private Logger logger = LoggerFactory.getLogger(WordCountSavorBolt.class);
 
 
     Integer id;

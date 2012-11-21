@@ -5,12 +5,9 @@ import backtype.storm.StormSubmitter;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.tuple.Fields;
 import com.realtimecep.pilots.analytics.sns.bolts.TwitterDataExtractorBolt;
-import com.realtimecep.pilots.analytics.sns.bolts.WordCountSaverBolt;
+import com.realtimecep.pilots.analytics.sns.bolts.WordCountSavorBolt;
 import com.realtimecep.pilots.analytics.sns.spouts.twitter.twitter4j.TwitterFilterStreamSpout;
 import redis.clients.jedis.Jedis;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Topology Starter Class.
@@ -35,7 +32,7 @@ public class ClusterTopologyStarter {
         builder.setBolt("data-extractor", new TwitterDataExtractorBolt(), 2)
                 .shuffleGrouping("twitter-stream-reader");
 
-        builder.setBolt("", new WordCountSaverBolt(), 5)
+        builder.setBolt("word-count-savor", new WordCountSavorBolt(), 5)
                 .fieldsGrouping("data-extractor", new Fields("word"));
 
 
