@@ -65,7 +65,6 @@ public class TwitterDataExtractorBolt extends BaseBasicBolt {
 
         if ("rt".equals(word)
                 || "...".equals(word)
-                || "박근혜".equals(word)
                 || word.length() == 1) {
 
             return false;
