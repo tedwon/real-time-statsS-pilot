@@ -122,8 +122,10 @@ public class TwitterFilterStreamSpout extends BaseRichSpout {
         if (tweet == null) {
             Utils.sleep(50);
         } else {
-//            logger.info(tweet.getText());
-            _collector.emit(new Values(tweet.getText()));
+
+            String tweetTest = tweet.getText();
+//            logger.info(tweetTest);
+            _collector.emit(new Values(tweetTest));
         }
     }
 
