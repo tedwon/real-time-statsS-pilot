@@ -14,6 +14,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.log4j>1.2.16</version.log4j>
+        <!--<version.twitter4j>2.2.6-SNAPSHOT</version.twitter4j>-->
+        <version.twitter4j>[3.0,)</version.twitter4j>
     </properties>
 
     <build>
@@ -111,13 +113,6 @@
     </dependencies>
 
     <repositories>
-
-        <repository>
-            <id>clojars.org</id>
-            <url>http://clojars.org/repo</url>
-        </repository>
-
-
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
@@ -126,6 +121,21 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>twitter4j.org</id>
+            <name>twitter4j.org Repository</name>
+            <url>http://twitter4j.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>clojars.org</id>
+            <url>http://clojars.org/repo</url>
         </repository>
     </repositories>
 
