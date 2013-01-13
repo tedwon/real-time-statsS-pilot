@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Twitter Keyword Top 10</title>
+    <link rel="stylesheet" type="text/css" href="js/extjs/resources/css/ext-all.css" />
+    <script type="text/javascript" src="js/extjs/ext-all.js"></script>
+    <script type="text/javascript">
+        var win = Ext.create('Ext.window.Window', {
+            title: 'iframe Window',
+            closable: true,
+            closeAction: 'hide',
+            width: 600,
+            minWidth: 350,
+            height: 350,
+            layout: 'fit',
+            items : [{
+                xtype : "component",
+                autoEl: {
+                    tag: 'iframe',
+                    src: 'http://www.wikipedia.org'
+                }
+            }]
+        });
+
+        Ext.onReady(function() {
+            win.show();
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
