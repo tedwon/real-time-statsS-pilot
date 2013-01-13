@@ -20,7 +20,9 @@ Prerequisites for Building
 
 Java JDK 1.6
 
-Maven 2.2 or higher (http://maven.apache.org/)
+Maven 2.2 or higher (http://maven.apache.org)
+
+Redis, latest stable version (http://redis.io)
 
 
 
@@ -31,7 +33,39 @@ $ mvn clean package
 
 
 
-Run
+Run in local mode
 -------------------
 
-$ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realtimecep.pilots.analytics.sns.TopologyStarter -Dexec.args="<twitter id> <twitter pwd>"
+$ mvn compile exec:java -Dexec.classpathScope=compile -Dexec.mainClass=com.realtimecep.pilots.analytics.sns.LocalTopologyStarter -Dexec.args="<twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379"
+
+or
+
+$ java -cp rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar -Dlog4j.configuration=log4j.xml com.realtimecep.pilots.analytics.sns.LocalTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379
+
+
+Run in cluster mode
+-------------------
+
+### Start Topology Command
+
+$ storm jar rt-statss-pilot-0.1.0-SNAPSHOT-jar-with-dependencies.jar com.realtimecep.pilots.analytics.sns.ClusterTopologyStarter <twitter id> <twitter pwd> <track(comma separated filter terms)> localhost 6379
+
+
+### Stop Topology Command
+
+$ storm kill statss-analytics-topology
+
+
+### Activate Topology Command
+
+$ storm activate statss-analytics-topology
+
+
+### Deactivate Topology Command
+
+$ storm deactivate statss-analytics-topology
+
+
+### Rebalance Topology Command
+
+$ storm rebalance statss-analytics-topology

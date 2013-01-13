@@ -14,6 +14,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.log4j>1.2.16</version.log4j>
+        <!--<version.twitter4j>2.2.6-SNAPSHOT</version.twitter4j>-->
+        <version.twitter4j>[3.0,)</version.twitter4j>
     </properties>
 
     <build>
@@ -30,6 +32,29 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <!--<mainClass>com.realtimecep.pilots.analytics.sns.LocalTopologyStarter</mainClass>-->
+                            <mainClass>com.realtimecep.pilots.analytics.sns.ClusterTopologyStarter</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -40,6 +65,15 @@
             <groupId>storm</groupId>
             <artifactId>storm</artifactId>
             <version>0.8.1</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.0.0</version>
+            <type>jar</type>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -49,12 +83,23 @@
         </dependency>
 
         <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>2.2.6-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-stream</artifactId>
+            <version>2.2.6-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${version.log4j}</version>
             <optional>true</optional>
         </dependency>
-
 
         <!-- ====================== -->
         <!--  Dependency for Test   -->
@@ -68,13 +113,6 @@
     </dependencies>
 
     <repositories>
-
-        <repository>
-            <id>clojars.org</id>
-            <url>http://clojars.org/repo</url>
-        </repository>
-
-
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
@@ -83,6 +121,21 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>twitter4j.org</id>
+            <name>twitter4j.org Repository</name>
+            <url>http://twitter4j.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>clojars.org</id>
+            <url>http://clojars.org/repo</url>
         </repository>
     </repositories>
 
