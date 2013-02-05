@@ -24,6 +24,8 @@ Maven 2.2 or higher (http://maven.apache.org)
 
 Redis, latest stable version (http://redis.io)
 
+Node.js (http://nodejs.org/download)
+
 
 
 Build
