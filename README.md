@@ -71,3 +71,13 @@ $ storm deactivate statss-analytics-topology
 ### Rebalance Topology Command
 
 $ storm rebalance statss-analytics-topology
+
+
+Run Live Chart UI
+-------------------
+
+cd src/main/node
+
+node app.js
+
+http://localhost:12567
