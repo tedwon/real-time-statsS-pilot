@@ -31,7 +31,7 @@ public class LocalTopologyStarter {
         builder.setBolt("data-extractor", new TwitterDataExtractorBolt())
                 .shuffleGrouping("twitter-stream-reader");
 
-        builder.setBolt("", new WordCountSavorBolt())
+        builder.setBolt("data-counter", new WordCountSavorBolt())
                 .fieldsGrouping("data-extractor", new Fields("word"));
 
 
