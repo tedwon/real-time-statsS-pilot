@@ -7,7 +7,12 @@
         <param name="Threshold" value="DEBUG"/>
         <param name="Target" value="System.out"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+            <!--<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>-->
+            <!--<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}:%L] %m%n"/>-->
+            <!--for more details-->
+            <param name="ConversionPattern" value="%-5p [%d{yyyy-MM-dd HH:mm:ss}] [%t] [%C.%M(%F:%L)] - %m%n"/>
+            <!--for better performance-->
+            <!--<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p %C{1}.%M - %m%n"/>-->
         </layout>
     </appender>
 
@@ -15,8 +20,24 @@
         <level value="TRACE"/>
     </logger>
 
+    <logger name="com.realtimecep.storm.starter">
+        <level value="TRACE"/>
+    </logger>
+
     <logger name="backtype.storm">
-        <level value="INFO"/>
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="backtype.storm.daemon">
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="org.apache.zookeeper">
+        <level value="WARN"/>
+    </logger>
+
+    <logger name="com.netflix.curator">
+        <level value="WARN"/>
     </logger>
 
     <logger name="com.espertech.esper">
