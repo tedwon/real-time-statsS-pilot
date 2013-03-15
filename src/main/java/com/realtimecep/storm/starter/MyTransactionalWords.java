@@ -31,6 +31,7 @@ import java.util.Map;
  * 2. The number of words for every bucket of 10 counts. So it stores in the database how many words have appeared
  * 0-9 times, how many have appeared 10-19 times, and so on.
  * count 수치 범위에 따라서 담는 버킷을 구분하고 처리 결과 담긴 버킷의 내용으로 데이터 통계를 파악 할 수 있다.
+ * top N count에 활용 할 수 있다.
  *
  * A batch of words can cause the bucket counts to decrement for some buckets and increment for others as words move
  * between buckets as their counts accumulate.
