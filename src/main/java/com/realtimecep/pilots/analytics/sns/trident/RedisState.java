@@ -1,5 +1,6 @@
 package com.realtimecep.pilots.analytics.sns.trident;
 
+import backtype.storm.task.IMetricsContext;
 import backtype.storm.tuple.Values;
 import redis.clients.jedis.Jedis;
 import storm.trident.state.State;
@@ -28,7 +29,7 @@ public class RedisState implements IBackingMap<Long> {
 
     public static class Factory implements StateFactory {
         @Override
-        public State makeState(Map conf, int partitionIndex, int numPartitions) {
+        public State makeState(Map conf, IMetricsContext iMetricsContext, int partitionIndex, int numPartitions) {
             CachedMap c = new CachedMap(new RedisState(), 1000);
             MapState ms = NonTransactionalMap.build(c);
             return new SnapshottableMap(ms, new Values(""));
