@@ -1,6 +1,7 @@
-package com.realtimecep.storm.starter.bolt;
+package com.realtimecep.storm.starter.bolts;
 
-import backtype.storm.task.TopologyContext;
+import backtype.storm.utils.Utils;
+import org.apache.log4j.Logger;
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseBasicBolt;
@@ -11,16 +12,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
+public class MergeObjects extends BaseBasicBolt {
+    public static Logger LOG = Logger.getLogger(MergeObjects.class);
 
-public class RankObjects extends BaseBasicBolt {
-    List<List> _rankings = new ArrayList<List>();
+    private List<List> _rankings = new ArrayList();
+    int _count = 10;
+    Long _lastTime;
 
-    int _count;
-    Long _lastTime = null;
-
-    public RankObjects(int n) {
+    public MergeObjects(int n) {
         _count = n;
     }
 
@@ -48,32 +48,37 @@ public class RankObjects extends BaseBasicBolt {
     }
 
     public void execute(Tuple tuple, BasicOutputCollector collector) {
-        Object tag = tuple.getValue(0);
-        Integer existingIndex = _find(tag);
-        if (null != existingIndex) {
-            _rankings.set(existingIndex, tuple.getValues());
-        } else {
-            _rankings.add(tuple.getValues());
-        }
-        Collections.sort(_rankings, new Comparator<List>() {
-            public int compare(List o1, List o2) {
-                return _compare(o1, o2);
+        List<List> merging = (List) tuple.getValue(0);
+        for(List pair : merging) {
+            Integer existingIndex = _find(pair.get(0));
+            if (null != existingIndex) {
+                _rankings.set(existingIndex, pair);
+            } else {
+                _rankings.add(pair);
             }
-        });
-        if (_rankings.size() > _count) {
-            _rankings.remove(_count);
+
+            Collections.sort(_rankings, new Comparator<List>() {
+                public int compare(List o1, List o2) {
+                    return _compare(o1, o2);
+                }
+            });
+
+            if (_rankings.size() > _count) {
+                _rankings.subList(_count, _rankings.size()).clear();
+            }
         }
+
         long currentTime = System.currentTimeMillis();
         if(_lastTime==null || currentTime >= _lastTime + 2000) {
-
-
-            ArrayList arrayList = new ArrayList(_rankings);
-            collector.emit(new Values(arrayList));
+            collector.emit(new Values(new ArrayList(_rankings)));
+            LOG.info("Rankings: " + _rankings);
             _lastTime = currentTime;
-
-
-//            System.out.println(arrayList);
         }
+
+
+        LOG.info("Rankings: " + _rankings);
+        Utils.sleep(1000);
+
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {

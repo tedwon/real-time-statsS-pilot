@@ -5,9 +5,9 @@ import backtype.storm.LocalCluster;
 import backtype.storm.testing.TestWordSpout;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.tuple.Fields;
-import com.realtimecep.storm.starter.bolt.MergeObjects;
-import com.realtimecep.storm.starter.bolt.RankObjects;
-import com.realtimecep.storm.starter.bolt.RollingCountObjects;
+import com.realtimecep.storm.starter.bolts.MergeObjects;
+import com.realtimecep.storm.starter.bolts.RankObjects;
+import com.realtimecep.storm.starter.bolts.RollingCountObjects;
 
 
 /**

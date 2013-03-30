@@ -76,11 +76,11 @@
             <scope>compile</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.espertech</groupId>
-            <artifactId>esper</artifactId>
-            <version>4.7.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.espertech</groupId>-->
+            <!--<artifactId>esper</artifactId>-->
+            <!--<version>4.7.0</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.twitter4j</groupId>

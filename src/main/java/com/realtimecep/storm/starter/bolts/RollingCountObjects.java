@@ -1,4 +1,4 @@
-package com.realtimecep.storm.starter.bolt;
+package com.realtimecep.storm.starter.bolts;
 
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
